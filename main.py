@@ -1,7 +1,14 @@
 # Import necessary libraries
 from requests import get
 from dateutil.parser import parse
-from colorama import just_fix_windows_console, Fore, Style
+from colorama import just_fix_windows_console, Fore,Back, Style
+
+just_fix_windows_console()
+print(Fore.RED + 'some red text')
+print(Back.GREEN + 'and with a green background')
+print(Style.DIM + 'and in dim text')
+print(Style.RESET_ALL)
+print('back to normal now')
 
 
 # Initialize colorama for Windows
@@ -19,3 +26,7 @@ url_stops = f"https://api.winnipegtransit.com/v3/stops.json?lon={lon}&lat={lat}&
 resp_stops = get(url_stops).json()
 
 print(resp_stops)
+
+#show formatted time on the terminal
+my_datetime_obj = parse(resp_stops["query-time"])
+print(my_datetime_obj.strftime("%H:%M:%S"))
